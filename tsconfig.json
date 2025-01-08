@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "declaration": false,
+    "declarationMap": false,
+    "tsBuildInfoFile": ".tsbuildinfo",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "checkJs": true,
+    // "noEmit": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+  },
+  "include": [
+    "src",
+    "lib"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "coverage",
+    "tests",
+    "ecosystem.config.js",
+    "example",
+    "sample",
+    "**/*.test.ts",
+    "**/setupTests.ts",
+    "**/__mocks__/*",
+    "**/dist/*",
+    "**/build/*"
+  ]
+}
