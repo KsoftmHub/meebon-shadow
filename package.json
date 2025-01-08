@@ -1,9 +1,9 @@
 {
-  "name": "@miller/miller",
+  "name": "@miller/monorepo",
   "version": "1.0.0",
   "description": "> TODO: description",
   "author": "kajalanS <kajalan4@gmail.com>",
-  "homepage": "https://github.com/KsoftmHub/miller_api_template?tab=readme-ov-file#getting-started",
+  "homepage": "https://github.com/KsoftmHub/miller?tab=readme-ov-file#getting-started",
   "license": "ISC",
   "main": "src/index.js",
   "type": "module",
@@ -19,7 +19,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KsoftmHub/miller_api_template.git"
+    "url": "git+https://github.com/KsoftmHub/miller.git"
   },
   "scripts": {
     "sequelize": "sequelize",
@@ -34,7 +34,7 @@
     "build:clean": "tsc --build --clean"
   },
   "bugs": {
-    "url": "https://github.com/KsoftmHub/miller_api_template/issues"
+    "url": "https://github.com/KsoftmHub/miller/issues"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
