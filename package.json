@@ -2,12 +2,13 @@
   "name": "@miller/monorepo",
   "version": "1.0.0",
   "description": "> TODO: description",
-  "author": "kajalanS <kajalan4@gmail.com>",
+  "author": "kajalanS <103587022+kajalanS@users.noreply.github.com>",
   "homepage": "https://github.com/KsoftmHub/miller?tab=readme-ov-file#getting-started",
   "license": "ISC",
   "main": "src/index.js",
   "type": "module",
   "types": "src/types",
+  "private": true,
   "directories": {
     "src": "src",
     "test": "tests",
@@ -16,6 +17,9 @@
   "files": [
     "dist",
     "uploads"
+  ],
+  "workspaces": [
+    "packages/*"
   ],
   "repository": {
     "type": "git",
