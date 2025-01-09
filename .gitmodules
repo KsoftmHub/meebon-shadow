@@ -1,8 +1,8 @@
 [submodule "packages/authenticate"]
 	path = packages/authenticate
 	url = https://github.com/KsoftmHub/meebon-shadow-authenticate-handler.git
-[submodule "packages/errors"]
-	path = packages/errors
+[submodule "packages/error"]
+	path = packages/error
 	url = https://github.com/KsoftmHub/meebon-shadow-error-handler.git
 [submodule "packages/jwt"]
 	path = packages/jwt
