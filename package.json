@@ -30,7 +30,7 @@
     "rm:node": "find . -name \"node_modules\" -type d -prune -exec rm -rf '{}' +",
     "rm:dist": "find . -name \"dist\" -type d -prune -exec rm -rf '{}' +",
     "clean": "pnpm run rm:node && pnpm run rm:dist",
-    "ci": "pnpm run clean && pnpm i",
+    "ci": "pnpm run clean && pnpm recursive install",
     "start": "node ./dist/index.js",
     "test": "jest",
     "dev": "nodemon",
