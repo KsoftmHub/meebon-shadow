@@ -10,3 +10,6 @@
 [submodule "packages/utils"]
 	path = packages/utils
 	url = https://github.com/KsoftmHub/meebon-utils.git
+[submodule "packages/types"]
+	path = packages/types
+	url = https://github.com/KsoftmHub/meebon-types.git
