@@ -9,7 +9,7 @@
 	url = https://github.com/KsoftmHub/meebon-shadow-jwt-handler.git
 [submodule "packages/utils"]
 	path = packages/utils
-	url = https://github.com/KsoftmHub/meebon-utils.git
+	url = https://github.com/KsoftmHub/meebon-shadow-utils.git
 [submodule "packages/types"]
 	path = packages/types
-	url = https://github.com/KsoftmHub/meebon-types.git
+	url = https://github.com/KsoftmHub/meebon-shadow-types.git
