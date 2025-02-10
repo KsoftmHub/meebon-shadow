@@ -1,7 +1,7 @@
 import { InferAttributes, } from "sequelize";
-import { STATUS_CODE } from "../../helper/RouteHelper";
 import { ApiControllerExtrasProps } from "./ApiController";
 import { Paginate, PaginationMeta } from "./Handlers";
+import { STATUS_CODE } from "@meebon/lib/helper/RouteHelper.ts";
 
 
 export interface MetaInfoProps extends Partial<PaginationMeta> {

@@ -3,7 +3,7 @@ import compression from "compression";
 import cors from "cors";
 // import { NextFunction, Request, Response } from "express-serve-static-core";
 import express, { NextFunction, Request, Response } from "express";
-// import appRoute from "./web/routes";
+import appRoute from "./routes/index.js";
 // import ErrorHandler from "./handler/ErrorHandler";
 // import ResponseHandler from "./handler/ResponseHandler";
 // import PaginationHandler from "./handler/PaginationHandler";
@@ -14,6 +14,10 @@ import fs from 'fs';
 // import configEnv from './config/config';
 import path from "path";
 import { STATUS_CODE } from "./helper/RouteHelper.js";
+import ErrorResponseHandler from "@meebon/packages/error/lib/index.js";
+import { jwtAuth } from "@meebon/packages/jwt/lib/index.js";
+import PaginationHandler from "@meebon/packages/utils/lib/PaginationHandler.js";
+import ResponseHandler from "@meebon/packages/utils/lib/ResponseHandler.js";
 // import { STATUS_CODE } from "../helper/RouteHelper.js";
 
 // configure the sequelize config as json
@@ -37,6 +41,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(compression());
 
+app.use(ResponseHandler);
+app.use(PaginationHandler);
+// app.use(dateParser);
+
+app.use(jwtAuth(({ payload, req, res, next }) => {
+  //* find the model and set the user info
+
+
+  next();
+}));
+
 
 // handlers attachments
 // app.use(ResponseHandler);
@@ -47,7 +62,7 @@ app.use(compression());
 // initializeDatabase();
 
 // base
-// app.use('/api/v1', appRoute);
+app.use('/api/v1', appRoute);
 app.use('/public/v1', express.static('public'));
 
 // app.all('*', RoutHandler(async ({ req, res, extras }) => {
@@ -67,7 +82,7 @@ app.all('*', (req, res, next) => {
   });
 });
 
-// app.use(ErrorHandler);
+app.use(ErrorResponseHandler);
 
 app.listen(port, () => {
   return console.log(`Server started on port ${port}`);

@@ -15,13 +15,20 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "checkJs": true,
-    // "noEmit": true,
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": "./dist",
+    "paths": {
+      "@meebon/lib/*": [
+        "./src/*"
+      ],
+      "@meebon/packages/*": [
+        "./packages/*"
+      ]
+    }
   },
   "include": [
     "src",
-    "lib"
+    "packages"
   ],
   "exclude": [
     "node_modules",
