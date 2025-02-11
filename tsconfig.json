@@ -1,47 +1,64 @@
+// {
+//   "compilerOptions": {
+//     "target": "es2020",
+//     "module": "NodeNext",
+//     "moduleResolution": "NodeNext",
+//     "declaration": false,
+//     "declarationMap": false,
+//     "tsBuildInfoFile": ".tsbuildinfo",
+//     "strict": true,
+//     "esModuleInterop": true,
+//     "skipLibCheck": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "allowJs": true,
+//     "sourceMap": true,
+//     "experimentalDecorators": true,
+//     "emitDecoratorMetadata": true,
+//     "checkJs": true,
+//     "rootDir": ".",
+//     "outDir": "./dist",
+//     "paths": {
+//       "@meebon/lib/*": [
+//         "./src/*"
+//       ]
+//     }
+//   },
+//   "include": [
+//     "src",
+//   ],
+//   "exclude": [
+//     "node_modules",
+//     "dist",
+//     "coverage",
+//     "tests",
+//     "ecosystem.config.js",
+//     "example",
+//     "sample",
+//     "**/*.test.ts",
+//     "**/setupTests.ts",
+//     "**/__mocks__/*",
+//     "**/dist/*",
+//     "**/build/*"
+//   ]
+// }
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "declaration": false,
-    "declarationMap": false,
-    "tsBuildInfoFile": ".tsbuildinfo",
-    "strict": true,
+    "target": "es2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "allowJs": true,
-    "sourceMap": true,
-    "experimentalDecorators": true,
+    "strict": true,
+    "skipLibCheck": true,
     "emitDecoratorMetadata": true,
-    "checkJs": true,
-    "rootDir": ".",
-    "outDir": "./dist",
-    "paths": {
-      "@meebon/lib/*": [
-        "./src/*"
-      ],
-      "@meebon/packages/*": [
-        "./packages/*"
-      ]
-    }
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "outDir": "dist"
   },
   "include": [
-    "src",
-    "packages"
+    "src/**/*"
   ],
   "exclude": [
-    "node_modules",
-    "dist",
-    "coverage",
-    "tests",
-    "ecosystem.config.js",
-    "example",
-    "sample",
-    "**/*.test.ts",
-    "**/setupTests.ts",
-    "**/__mocks__/*",
-    "**/dist/*",
-    "**/build/*"
+    "node_modules"
   ]
 }
