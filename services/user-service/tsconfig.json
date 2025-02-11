@@ -10,7 +10,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
-    "outDir": "dist"
+    "composite": true,
+    "outDir": "../../dist/user-service"
   },
   "include": [
     "src/**/*"
