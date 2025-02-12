@@ -1,0 +1,15 @@
+{
+  "name": "@meebon/shadow",
+  "template": [
+    {
+      "name": "entity",
+      "templateDir": "./templates/entity",
+      "destinationDir": "./src/entity"
+    },
+    {
+      "name": "modules",
+      "templateDir": "./templates/module-template",
+      "destinationDir": "./src/modules"
+    }
+  ]
+}

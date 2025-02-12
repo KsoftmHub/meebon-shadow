@@ -1,19 +1,22 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "module": "commonjs",
+    "lib": [
+      "es2021",
+      "DOM"
+    ],
+    "target": "es2021",
+    "module": "es2022",
     "moduleResolution": "node",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "./dist",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true,
-    "outDir": "dist"
+    "sourceMap": true
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "configs/**/*",
+    "packages/**/*"
   ],
   "exclude": [
     "node_modules"
