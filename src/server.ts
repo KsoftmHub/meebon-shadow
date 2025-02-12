@@ -1,6 +1,5 @@
-import "reflect-metadata"; // Must be imported before TypeDI
-import { Container } from "typedi"; // Import Container
-import App from "./app";
+// import { Containe.rom "typedi"; // Import Container
+import App from "./index";
 import * as dotenv from 'dotenv';
 dotenv.config();
 

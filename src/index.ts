@@ -4,7 +4,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import { Container } from "typedi"; // Import Container
 import { UserController } from "./controllers/UserController"; // Import the controller
-import { errorHandler } from "./middlewares/ErrorHandler";
+import { errorHandler } from "./utils/ErrorHandler";
 import { AppDataSource } from "./data-source";
 
 class App {
