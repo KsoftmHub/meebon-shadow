@@ -2,6 +2,7 @@ import inquirer from "inquirer";
 import fs from "fs";
 import path from "path";
 import fsPromise from "fs/promises";
+import App from "../src/app";
 import { toCamelCase, toHeaderCase, toLowerCase, toPascalCase, toPathCase, toSnakeCase } from "js-convert-case";
 import shadowConfig from "../shadow.config.json";
 import inquirerAutoCompleteSuggest from "inquirer-autocomplete-prompt";
@@ -16,6 +17,13 @@ const COLOR_RED = "\x1b[31m";
 const COLOR_YELLOW = "\x1b[33m";
 
 // ─── COLUMN TYPE DEFINITIONS ──────────────────────────────────────────────
+
+const CATEGORY_LIST = {
+  "modules": "modules",
+  "entity": "entity",
+  "route:list": "route:list",
+}
+type CategoryType = keyof typeof CATEGORY_LIST;
 
 const COLUMN_TYPE_MAP = {
   int: "number",
@@ -92,13 +100,15 @@ interface TemplateDir {
 
 // ─── PROMPT FUNCTIONS ──────────────────────────────────────────────────────
 
-async function promptCategory(): Promise<"modules" | "entity"> {
+async function promptCategory(): Promise<CategoryType> {
+  const categoryList = Object.keys(CATEGORY_LIST);
   const { category } = await inquirer.prompt([
     {
-      type: "list",
+      type: "autocomplete",
       name: "category",
       message: "Select a category:",
-      choices: ["modules", "entity"],
+      source: (_answers: any, input: string = "") =>
+        Promise.resolve(categoryList.filter((x) => x.includes(input))),
     },
   ]);
   return category;
@@ -289,44 +299,51 @@ async function runGenerator(): Promise<void> {
     const template = shadowConfig.template.find(
       (x: TemplateDir) => x.name === category
     );
-    if (!template) {
-      console.error(`${COLOR_RED}Invalid category selected!${COLOR_RESET}`);
-      return;
-    }
-    const moduleName = await promptModuleName(category);
-    const mapper: Record<string, string> = {
-      module_name: moduleName,
-      route_name: toPathCase(moduleName),
-      module_name_camel_case: toCamelCase(moduleName),
-    };
 
-    if (category === "modules") {
+    if (category === "entity" || category === "modules") {
+      if (!template) {
+        console.error(`${COLOR_RED}Invalid category selected!${COLOR_RESET}`);
+        return;
+      }
+      const moduleName = await promptModuleName(category);
+      const mapper: Record<string, string> = {
+        module_name: moduleName,
+        route_name: toPathCase(moduleName),
+        module_name_camel_case: toCamelCase(moduleName),
+      };
 
-      // Ask user if they want to generate an entry file for the module
-      const { generateEntry } = await inquirer.prompt([
-        {
-          type: "confirm",
-          name: "generateEntry",
-          message: "Do you want to generate an entry file for the module?",
-          default: true,
-        },
-      ]);
-      // Generate module entry if requested
-      if (generateEntry) {
-        const entityTemplate = shadowConfig.template.find(
-          (x: TemplateDir) => x.name === "entity"
-        );
-        if (!entityTemplate) {
-          console.error(`${COLOR_RED}Entity template not found!${COLOR_RESET}`);
-          return;
+      // Generate template files
+      await generateTemplate(template, mapper);
+
+      if (category === "modules") {
+
+        // Ask user if they want to generate an entry file for the module
+        const { generateEntry } = await inquirer.prompt([
+          {
+            type: "confirm",
+            name: "generateEntry",
+            message: "Do you want to generate an entry file for the module?",
+            default: true,
+          },
+        ]);
+        // Generate module entry if requested
+        if (generateEntry) {
+          const entityTemplate = shadowConfig.template.find(
+            (x: TemplateDir) => x.name === "entity"
+          );
+          if (!entityTemplate) {
+            console.error(`${COLOR_RED}Entity template not found!${COLOR_RESET}`);
+            return;
+          }
+          await generateTemplate(entityTemplate, mapper);
         }
-        await generateTemplate(entityTemplate, mapper);
       }
     }
-
-    // Generate template files
-    await generateTemplate(template, mapper);
-
+    if (category === "route:list") {
+      const port = parseInt(process.env.PORT || '5010', 10);
+      const app = new App(port);
+      app.getRoutesList();
+    }
   } catch (error) {
     console.error(`${COLOR_RED}Error: ${error}${COLOR_RESET}`);
   }

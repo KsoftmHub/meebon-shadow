@@ -1,7 +1,7 @@
+import { BaseController } from '@lib/core/abstract/BaseController';
+import { {{module_name}} } from '@lib/entity/{{module_name}}';
 import { JsonController } from 'routing-controllers';
 import { {{module_name}}Service } from '../services/{{module_name}}Service';
-import { {{module_name}} } from '../../../entity/{{module_name}}';
-import { BaseController } from '../../../core/abstract/BaseController';
 
 @JsonController("/{{route_name}}")
 export class {{module_name}}Controller extends BaseController<{{module_name}}> {

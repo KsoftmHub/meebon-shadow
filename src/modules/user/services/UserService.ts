@@ -1,11 +1,11 @@
-import { Service, Token } from "typedi";
-import { AppDataSource } from "../../../sources/data-source";
+import { Service } from "typedi";
 import { validateOrReject } from 'class-validator';
-import { User } from "../../../entity/User";
-import { IService } from "../../../core/interfaces/IService";
+import { User } from "@lib/entity/User";
+import { AppDataSource } from "@lib/sources/data-source";
+import { IUserService } from "../interfaces/IUserService";
 
 @Service<User>()
-export class UserService implements IService<User> {
+export class UserService implements IUserService {
   private userRepository = AppDataSource.getRepository(User);
 
   async getAll(): Promise<User[]> {

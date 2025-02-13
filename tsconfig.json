@@ -1,5 +1,17 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@packages/*": [
+        "./packages/*"
+      ],
+      "@lib/*": [
+        "./src/*"
+      ],
+      "@template/*": [
+        "./templates/*"
+      ]
+    },
     "lib": [
       "es2021",
       "DOM"

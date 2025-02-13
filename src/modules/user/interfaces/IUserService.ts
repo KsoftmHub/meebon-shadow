@@ -1,5 +1,5 @@
-import { IService } from "../../../core/interfaces/IService";
-import { User } from "../../../entity/User";
+import { IService } from "@lib/core/interfaces/IService";
+import { User } from "@lib/entity/User";
 
 export interface IUserService extends IService<User> {
   //

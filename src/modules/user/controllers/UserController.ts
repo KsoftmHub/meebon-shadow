@@ -1,7 +1,7 @@
+import { BaseController } from '@lib/core/abstract/BaseController';
+import { User } from '@lib/entity/User';
 import { JsonController } from 'routing-controllers';
 import { UserService } from '../services/UserService';
-import { User } from '../../../entity/User';
-import { BaseController } from '../../../core/abstract/BaseController';
 
 @JsonController("/user")
 export class UserController extends BaseController<User> {

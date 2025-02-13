@@ -1,7 +1,7 @@
 import { Service } from "typedi";
-import { AppDataSource } from "../../../sources/data-source";
 import { validateOrReject } from 'class-validator';
-import { {{module_name}} } from "../../../entity/{{module_name}}";
+import { {{module_name}} } from "@lib/entity/{{module_name}}";
+import { AppDataSource } from "@lib/sources/data-source";
 import { I{{module_name}}Service } from "../interfaces/I{{module_name}}Service";
 
 @Service<{{module_name}}>()

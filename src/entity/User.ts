@@ -1,6 +1,6 @@
 import { Entity, Column } from "typeorm";
 import { IsNotEmpty, IsEmail, MinLength } from "class-validator";
-import { RootEntity } from "../core/abstract/RootEntity";
+import { RootEntity } from "@lib/core/abstract/RootEntity";
 
 @Entity()
 export class User extends RootEntity {

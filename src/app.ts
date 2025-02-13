@@ -2,14 +2,15 @@ import express, { Application, Router } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
-import { Container } from "typedi";
-import { errorHandler } from "./core/middlewares/ErrorHandler";
-import { AppDataSource } from './sources/data-source';
-import ResponseHandler from './core/handlers/ResponseHandler';
 import { createExpressServer } from 'routing-controllers';
-import { UserController } from './modules/user/controllers/UserController';
-import { IBaseResponse } from './core/interfaces/Request';
-import { STATUS_CODE } from './core/exceptions/helpers';
+import expressListRoutes from 'express-list-routes';
+
+import { errorHandler } from "@lib/core/middlewares/ErrorHandler";
+import { AppDataSource } from '@lib/sources/data-source';
+import ResponseHandler from '@lib/core/handlers/ResponseHandler';
+import { UserController } from '@lib/modules/user/controllers/UserController';
+import { IBaseResponse } from '@lib/core/interfaces/Request';
+import { STATUS_CODE } from '@lib/core/exceptions/helpers';
 
 class App {
   public app: Application;
@@ -51,6 +52,10 @@ class App {
 
   private initializeErrorHandling(): void {
     this.app.use(errorHandler);
+  }
+
+  public getRoutesList() {
+    expressListRoutes(this.app, {})
   }
 
   public async listen(): Promise<void> {

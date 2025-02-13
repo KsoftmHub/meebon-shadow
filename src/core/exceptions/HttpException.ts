@@ -12,6 +12,8 @@ export class HttpException extends Error {
     this.message = message;
     this.data = data;
     this.extras = extras;
+
+    Error.captureStackTrace(this, this.constructor);
   }
 }
 
