@@ -1,5 +1,6 @@
 {
   "name": "@meebon/shadow",
+  "app": "src/app.ts",
   "template": [
     {
       "name": "entity",

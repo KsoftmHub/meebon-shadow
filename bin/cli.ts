@@ -2,10 +2,11 @@ import inquirer from "inquirer";
 import fs from "fs";
 import path from "path";
 import fsPromise from "fs/promises";
-import App from "../src/app";
+// import App from "../src/app";
 import { toCamelCase, toHeaderCase, toLowerCase, toPascalCase, toPathCase, toSnakeCase } from "js-convert-case";
 import shadowConfig from "../shadow.config.json";
 import inquirerAutoCompleteSuggest from "inquirer-autocomplete-prompt";
+import { pathToFileURL } from "url";
 
 // Register the autocomplete prompt
 inquirer.registerPrompt("autocomplete", inquirerAutoCompleteSuggest);
@@ -341,7 +342,11 @@ async function runGenerator(): Promise<void> {
     }
     if (category === "route:list") {
       const port = parseInt(process.env.PORT || '5010', 10);
-      const app = new App(port);
+      let appPath = path.join(shadowConfig.app)
+      appPath = path.resolve(appPath);
+      appPath = pathToFileURL(appPath).href;
+      let App = await import(appPath);
+      const app = new App.default(port);
       app.getRoutesList();
     }
   } catch (error) {

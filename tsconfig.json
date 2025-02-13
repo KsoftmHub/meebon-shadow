@@ -13,11 +13,13 @@
       ]
     },
     "lib": [
-      "es2021",
+      "ESNext",
       "DOM"
     ],
-    "target": "es2021",
-    "module": "es2022",
+    // "target": "es2021",
+    "target": "ESNext",
+    // "module": "es2022",
+    "module": "ESNext",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "outDir": "./dist",
