@@ -40,4 +40,13 @@ export class {{module_name}}Service implements I{{module_name}}Service {
     await this.{{module_name_camel_case}}Repository.softRemove({{module_name_camel_case}});
     return true;
   }
+
+  async softDelete(id: number): Promise<boolean> {
+    const {{module_name_camel_case}} = await this.getById(id);
+    if (!{{module_name_camel_case}}) {
+      return false;
+    }
+    await this.{{module_name_camel_case}}Repository.softRemove({{module_name_camel_case}});
+    return true;
+  }
 }

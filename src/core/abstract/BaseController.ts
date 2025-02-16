@@ -6,41 +6,17 @@ import { HttpException } from '../exceptions/HttpException';
 import { STATUS_CODE } from '../exceptions/helpers';
 import { IService } from '../interfaces/IService';
 
-// export abstract class BaseController<T> {
-//   // (req: Request<any, any, any, Record<string, any>>, res: Response<any, any>, next: NextFunction): void | Promise<void>
-
-//   abstract getAll(req?: IBaseRequest, res?: IBaseResponse): void | Promise<void>;
-//   abstract create<T extends RootEntity>(data: T, req?: IBaseRequest, res?: IBaseResponse): void | Promise<void>;
-
-//   abstract getById<U extends string>(data: IBaseControllerProps<T, U>): void | Promise<void>;
-//   abstract update<T extends RootEntity>(data: T, req?: IBaseRequest, res?: IBaseResponse): void | Promise<void>;
-//   abstract delete<U extends string>(data: IBaseControllerProps<T, U>): void | Promise<void>;
-// }
-
-
-// export class IBaseControllerProps<T, U> {
-//   @Req()
-//   req?: IBaseRequest;
-//   @Res()
-//   res?: IBaseResponse;
-//   @Param('id')
-//   id?: U;
-//   @Body()
-//   data?: T;
-// }
-
-// export interface IValidationMiddleware {
-//   (req: IBaseRequest, res: IBaseResponse, next: NextFunction): void;
-// }
-
 export abstract class BaseController<T> {
   abstract service: IService<T>;
 
   @Get('/')
   async getAll(@Res() res: IBaseResponse) {
     try {
-      const items = await this.service.getAll();
-      res.json({ message: `${this.getEntityName()}(s) load successful`, status: STATUS_CODE.OK, data: items });
+      const item = await this.service.getAll();
+      res.sendRes(item as T[], {
+        message: `${this.getEntityName()}(s) load successful`,
+        status: STATUS_CODE.OK,
+      })
     } catch (error) {
       throw new HttpException({ message: `Error fetching ${this.getEntityName()}s`, statusCode: STATUS_CODE.INTERNAL_SERVER_ERROR });
     }
@@ -50,7 +26,10 @@ export abstract class BaseController<T> {
   async create(@Body() data: T, @Res() res: IBaseResponse) {
     try {
       const item = await this.service.create(data);
-      res.json({ message: `${this.getEntityName()} create successful`, status: STATUS_CODE.CREATED, data: item });
+      res.sendRes(item as T[], {
+        message: `${this.getEntityName()} create successful`,
+        status: STATUS_CODE.CREATED,
+      })
     } catch (error) {
       throw new HttpException({ message: `Error creating ${this.getEntityName()}`, statusCode: STATUS_CODE.INTERNAL_SERVER_ERROR });
     }
@@ -62,12 +41,21 @@ export abstract class BaseController<T> {
     try {
       const item = await this.service.getById(entityId);
       if (item) {
-        res.json({ message: `${this.getEntityName()} load successful`, status: STATUS_CODE.OK, data: item });
+        res.sendRes(item as T[], {
+          message: `${this.getEntityName()} load successful`,
+          status: STATUS_CODE.OK,
+        })
       } else {
-        throw new HttpException({ message: `${this.getEntityName()} not Found`, statusCode: STATUS_CODE.NOT_FOUND });
+        throw new HttpException({
+          message: `${this.getEntityName()} not Found`,
+          statusCode: STATUS_CODE.NOT_FOUND
+        });
       }
     } catch (error) {
-      throw new HttpException({ message: `Error fetching ${this.getEntityName()}`, statusCode: STATUS_CODE.INTERNAL_SERVER_ERROR });
+      throw new HttpException({
+        message: `Error fetching ${this.getEntityName()}`,
+        statusCode: STATUS_CODE.INTERNAL_SERVER_ERROR
+      });
     }
   }
 
@@ -77,7 +65,10 @@ export abstract class BaseController<T> {
     try {
       const updatedItem = await this.service.update(entityId, data);
       if (updatedItem) {
-        res.json({ message: `${this.getEntityName()} update successful`, status: STATUS_CODE.OK, data: updatedItem });
+        res.sendRes(updatedItem as T[], {
+          message: `${this.getEntityName()} update successful`,
+          status: STATUS_CODE.OK,
+        })
       } else {
         throw new HttpException({ message: `${this.getEntityName()} not Found`, statusCode: STATUS_CODE.NOT_FOUND });
       }
@@ -92,7 +83,10 @@ export abstract class BaseController<T> {
     try {
       const deleted = await this.service.delete(entityId);
       if (deleted) {
-        res.json({ message: `${this.getEntityName()} delete successful`, status: STATUS_CODE.NO_CONTENT });
+        throw new HttpException({
+          message: `${this.getEntityName()} delete successful`,
+          statusCode: STATUS_CODE.NO_CONTENT
+        });
       } else {
         throw new HttpException({ message: `${this.getEntityName()} not Found`, statusCode: STATUS_CODE.NOT_FOUND });
       }

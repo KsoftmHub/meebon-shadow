@@ -4,4 +4,5 @@ export interface IService<T> {
   create(data: Partial<T>): Promise<T>;
   update(id: number, data: Partial<T>): Promise<T | undefined>;
   delete(id: number): Promise<boolean>;
+  softDelete(id: number): Promise<boolean>;
 }

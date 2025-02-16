@@ -40,4 +40,13 @@ export class UserService implements IUserService {
     await this.userRepository.remove(user);
     return true;
   }
+
+  async softDelete(id: number): Promise<boolean> {
+    const user = await this.getById(id);
+    if (!user) {
+      return false;
+    }
+    await this.userRepository.softRemove(user);
+    return true;
+  }
 }
