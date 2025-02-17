@@ -20,8 +20,7 @@
     "db:migrate": "pnpm run typeorm migration:run -d src/sources/migration-source.ts",
     "mg": "pnpm run typeorm migration:generate -d src/sources/migration-source.ts",
     "mc": "pnpm run typeorm migration:create",
-    "sc": "pnpm run typeorm subscriber:create",
-    "shadow": "tsx ./bin/cli.ts"
+    "sc": "pnpm run typeorm subscriber:create"
   },
   "dependencies": {
     "class-validator": "^0.14.1",

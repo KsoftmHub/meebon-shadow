@@ -1,6 +1,0 @@
-import { IService } from "@lib/core/interfaces/IService";
-import { {{module_name}} } from "@lib/entity/{{module_name}}";
-
-export interface I{{module_name}}Service extends IService<{{module_name}}> {
-  //
-}

@@ -1,9 +1,0 @@
-import { Entity, Column } from "typeorm";
-import { IsNotEmpty, IsEmail, MinLength } from "class-validator";
-import { RootEntity } from "@lib/core/abstract/RootEntity";
-import { v7 as uuid } from 'uuid';
-
-@Entity()
-export class {{module_name}} extends RootEntity {
-{{records_list}}
-}
