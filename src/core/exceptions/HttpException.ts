@@ -6,12 +6,14 @@ export class HttpException extends Error {
   public data: any;
   public extras: IApiControllerExtrasProps;
 
-  constructor({ statusCode, message, data, extras }: HttpExceptionProps) {
+  constructor({ statusCode, message, data, extras, error }: HttpExceptionProps) {
     super(message);
     this.statusCode = statusCode;
-    this.message = message;
+    this.message = message ?? error.message;
     this.data = data;
     this.extras = extras;
+    this.stack = error?.stack;
+    this.name = error?.name;
 
     Error.captureStackTrace(this, this.constructor);
   }
@@ -25,4 +27,5 @@ export interface HttpExceptionProps extends AppErrorBasicProps {
   message: string;
   statusCode: number;
   data?: unknown;
+  error?: Error;
 }

@@ -3,6 +3,7 @@ import { IBaseRequest, IBaseResponse } from "../interfaces/Request";
 import { BuildResponseOptionPros } from "../interfaces/Response";
 import { IApiControllerExtrasProps, IApiControllerProps } from "../interfaces/IApiControllerProps";
 import SendAppError, { DuplicateKeyError, InternalServerError, NoAccessError, NoDataError, NoFileError, NoIdError, NoParameterError, NoTokenError } from "../exceptions/AppError";
+import { SERVER_ERROR } from "../exceptions/helpers";
 
 
 const ResponseHandler = (req: IBaseRequest, res: IBaseResponse, next: NextFunction) => {
@@ -61,7 +62,6 @@ const ResponseHandler = (req: IBaseRequest, res: IBaseResponse, next: NextFuncti
       meta: { ...req.meta, ...meta },
       data,
     });
-    // next();
   }
   next();
 }

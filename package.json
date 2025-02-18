@@ -9,6 +9,7 @@
     "dev": "nodemon",
     "lint": "pnpm -r lint",
     "test": "pnpm -r test",
+    "route": "tsx ./bin/routes.cli.ts",
     "start:dev": "concurrently 'pnpm run dev --filter @meebon/user-service' 'pnpm run dev --filter @meebon/reminder-service' 'pnpm run dev --filter @meebon/product-service'",
     "semantic-release": "semantic-release",
     "verify-conditions": "semantic-release verifyConditions",
@@ -23,6 +24,7 @@
     "sc": "pnpm run typeorm subscriber:create"
   },
   "dependencies": {
+    "@meebon/meebon-crypto": "^1.3.0",
     "class-validator": "^0.14.1",
     "compression": "^1.8.0",
     "cors": "^2.8.5",
