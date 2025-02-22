@@ -1,9 +1,13 @@
-import { Entity, Column } from "typeorm";
+import { Entity, Column, Generated } from "typeorm";
 import { IsNotEmpty, IsEmail, MinLength } from "class-validator";
 import { RootEntity } from "@lib/core/abstract/RootEntity";
 
 @Entity()
 export class User extends RootEntity {
+
+  @Column({ type: "uuid", unique: true, primary: true })
+  @Generated("uuid")
+  userId!: string;
 
   @IsNotEmpty({ message: "First name is required" })
   @Column({ type: "varchar", length: 255 })

@@ -1,15 +1,17 @@
-import { BaseEntity, CreateDateColumn, DeleteDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, CreateDateColumn, DeleteDateColumn, Generated, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 export abstract class RootEntity extends BaseEntity {
-  @PrimaryGeneratedColumn()
+
+  @PrimaryGeneratedColumn({ type: "int", unsigned: true })
+  @Generated("increment")
   id!: number;
 
   @CreateDateColumn()
-  created_at: Date;
+  createdAt: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updatedAt: Date;
 
   @DeleteDateColumn()
-  deleted_at: Date;
+  deletedAt: Date;
 }

@@ -5,10 +5,21 @@ const migrationsList = await getTsSourcePath("src/migration");
 const entitiesList = await getTsSourcePath("src/entity");
 const subscriberList = await getTsSourcePath("src/subscriber");
 
+let table: any;
+table = migrationsList.map((x) => ({ migrationsList: x }));
+if (Object.keys(table).length > 0) {
+  console.table(table);
+}
 
-console.table(migrationsList.map((x) => ({ migrationsList: x })));
-console.table(entitiesList.map((x) => ({ entitiesList: x })));
-console.table(subscriberList.map((x) => ({ subscriberList: x })));
+table = entitiesList.map((x) => ({ entitiesList: x }));
+if (Object.keys(table).length > 0) {
+  console.table(table);
+}
+
+table = subscriberList.map((x) => ({ subscriberList: x }));
+if (Object.keys(table).length > 0) {
+  console.table(table);
+}
 
 export const MigrationDataSource = new DataSource({
   type: process.env.DB_TYPE || "mysql" as any,
