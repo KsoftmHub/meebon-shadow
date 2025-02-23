@@ -1,0 +1,14 @@
+export const NO_PARAMS = "Required body params or queries are missing";
+export const SERVER_ERROR = "Internal Server Error";
+export const NO_TOKEN = "Token is required";
+export const NO_FILE = "File is required";
+export const NO_ID_FOUND = "Required body params id is not found in the database.";
+export const DUPLICATE_KEY = "Required body params key already exists";
+export const NO_DATA = "No Data";
+export const OWNER_ONLY_ACTION = "This action can only be completed by the resource's owner.";
+export const UNAUTHENTICATED = "You need to be authenticated to access this resource.";
+export const FORBIDDEN = "You do not have permission to access this resource.";
+export const INVALID_DATA = "The provided data is invalid or incomplete.";
+export const REQUEST_TIMEOUT = "The request timed out. Please try again later.";
+export const RESOURCE_NOT_FOUND = "The requested resource could not be found.";
+export const ACTION_NOT_ALLOWED = "This action is not allowed.";

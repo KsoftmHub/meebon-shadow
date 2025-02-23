@@ -18,6 +18,7 @@ interface IMeta extends Partial<IPaginationConfig> {
   total?: number;
 }
 
+export type SendResProps = (data?: any[] | object | undefined, meta?: IMeta | undefined) => void;
 
 export interface IBaseResponse extends Response {
   auth?: any;
@@ -26,7 +27,7 @@ export interface IBaseResponse extends Response {
 
 
   // build(options?: BuildResponseOptionPros): BuildResponseProps;
-  sendRes?: (data?: any[] | object | undefined, meta?: IMeta | undefined) => void;
+  sendRes?: SendResProps;
 }
 
 export interface IBaseRequest extends Request {

@@ -1,6 +1,5 @@
 import path from "path";
 import fs from 'fs/promises';
-import { DataSource } from "typeorm";
 
 export async function getTsSourcePath(dir: string): Promise<string[]> {
   const files: string[] = [];

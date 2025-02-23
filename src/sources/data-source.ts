@@ -11,6 +11,7 @@ const subscriberList = await getTsSourcePath("src/subscriber");
 
 export const AppDataSource = new DataSource({
   ...dbConfig,
+  logging: process.env.NODE_ENV === "production" ? false : true,
   migrations: [...migrationsList],
   entities: [...entitiesList],
   subscribers: [...subscriberList]
