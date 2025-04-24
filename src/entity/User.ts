@@ -4,7 +4,6 @@ import { RootEntity } from "@lib/core/abstract/RootEntity";
 
 @Entity()
 export class User extends RootEntity {
-
   @Column({ type: "uuid", unique: true, primary: true })
   @Generated("uuid")
   userId!: string;
@@ -24,8 +23,23 @@ export class User extends RootEntity {
   @IsString()
   email!: string;
 
+  @MinLength(8, { message: "Password must be at least 8 characters long" })
+  @IsString()
+  private _password!: string;
+
   @Column({ type: "varchar", length: 255 })
   @MinLength(8, { message: "Password must be at least 8 characters long" })
   @IsString()
-  passwordHash: string;
+  passwordHash!: string;
+
+  // Getter for password
+  get password(): string {
+    return this._password;
+  }
+
+  // Setter for password
+  set password(value: string) {
+    this._password = value;
+    this.passwordHash = value; // You can hash the password here if needed
+  }
 }
