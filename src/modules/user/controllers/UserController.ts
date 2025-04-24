@@ -1,6 +1,6 @@
 import { BaseController } from '@lib/core/abstract/BaseController';
 import { User } from '@lib/entity/User';
-import { Authorized, BadRequestError, Body, CurrentUser, Delete, Get, JsonController, Param, Post, Put, Res } from 'routing-controllers';
+import { Authorized, BadRequestError, Body, CurrentUser, Delete, Get, JsonController, Param, Post, Put, Res, UploadedFile } from 'routing-controllers';
 import { UserService } from '../services/UserService';
 import { IBaseResponse } from '@lib/core/interfaces/Request';
 import { STATUS_CODE } from '@lib/core/exceptions/helpers';
@@ -30,6 +30,13 @@ export class UserController extends BaseController<User> {
         error: error
       });
     }
+  }
+
+  @Post('/files')
+  async name(@UploadedFile("fileName") file: any, @Res() res: IBaseResponse) {
+    console.log(file);
+    // return res.sendRes(file, { message: "files", status: 200 });
+    return res.end(file.buffer);
   }
 
   @Post('/')
